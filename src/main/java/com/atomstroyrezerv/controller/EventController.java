@@ -3,9 +3,9 @@ package com.atomstroyrezerv.controller;
 import com.atomstroyrezerv.exception.ResourceNotFoundException;
 import com.atomstroyrezerv.model.Event;
 import com.atomstroyrezerv.service.EventService;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 
 import java.util.List;
 
@@ -33,4 +33,5 @@ public class EventController {
     public Event createEvent(@RequestBody Event event) {
         return eventService.save(event);
     }
+
 }
