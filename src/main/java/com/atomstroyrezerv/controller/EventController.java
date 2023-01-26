@@ -19,17 +19,17 @@ public class EventController {
         this.eventService = eventService;
     }
 
-    @GetMapping("/events")
+    @GetMapping("/event/all")
     public List<Event> getAllEvents() {
         return eventService.findAll();
     }
 
-    @GetMapping("/events/{id}")
+    @GetMapping("/event/{id}")
     public ResponseEntity<Event> getEventById(@PathVariable(value = "id") Integer id) throws ResourceNotFoundException {
         return ResponseEntity.ok(eventService.getEventById(id));
     }
 
-    @PostMapping("/events")
+    @PostMapping("/event/add")
     public Event createEvent(@RequestBody Event event) {
         return eventService.save(event);
     }
