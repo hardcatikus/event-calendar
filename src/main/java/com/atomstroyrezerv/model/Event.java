@@ -22,9 +22,9 @@ public class Event {
     @Column(name = "creation_time", nullable = false)
     private Date creationTime;
     @Column(nullable = false)
-    private String purpose;
+    private int purpose;
     @Column(name = "meeting_room", nullable = false)
-    private String meetingRoom;
+    private int meetingRoom;
     @Column(name = "initial_state", nullable = false)
     private int initialState;
     @Column(nullable = false)
