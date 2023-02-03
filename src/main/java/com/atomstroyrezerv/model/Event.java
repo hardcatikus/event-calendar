@@ -31,5 +31,7 @@ public class Event {
     private String applicant;
     @Column(name = "participants_list", nullable = false)
     private String participantsList;
+    @Column(name = "last_version", nullable = false)
+    private boolean lastVersion;
 
 }

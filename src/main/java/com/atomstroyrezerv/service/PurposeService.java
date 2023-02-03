@@ -1,5 +1,6 @@
 package com.atomstroyrezerv.service;
 
+import com.atomstroyrezerv.exception.ResourceNotFoundException;
 import com.atomstroyrezerv.model.Purpose;
 import com.atomstroyrezerv.repository.PurposeRepository;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,12 @@ public class PurposeService {
 
     public List<Purpose> findAll() {
         return purposeRepository.findAll();
+    }
+
+    public Purpose getPurposeById(Integer id) throws ResourceNotFoundException {
+        Purpose purpose = purposeRepository.findById(id).orElseThrow(() ->
+                new ResourceNotFoundException("Purpose was not found for id:" + id));
+        return purpose;
     }
 
 }

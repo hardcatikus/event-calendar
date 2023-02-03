@@ -6,8 +6,7 @@ import com.atomstroyrezerv.model.Event;
 import com.atomstroyrezerv.repository.EventRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class EventService {
@@ -18,7 +17,7 @@ public class EventService {
         this.eventRepository = eventRepository;
     }
 
-    public HashSet<EventDTO> getEvents() {
+/*    public HashSet<EventDTO> getEvents() {
         List<Event> events = eventRepository.findAll();
         HashSet<EventDTO> result = new HashSet<>();
         for (Event event : events) {
@@ -26,7 +25,7 @@ public class EventService {
             result.add(eventDTO);
         }
         return result;
-    }
+    }*/
 
     public List<Event> findAll() {
         return eventRepository.findAll();
@@ -41,4 +40,21 @@ public class EventService {
     public Event save(Event event) {
         return eventRepository.save(event);
     }
+
+    public List<Event> findAllByMeetingRoomAndDay(Integer meetingRoom, Date dayStart){
+        Calendar c = Calendar.getInstance();
+        c.setTime(dayStart);
+        c.add(Calendar.DATE, 1);
+        Date dayEnd = c.getTime();
+        return eventRepository.findAllByMeetingRoomAndStartTimeGreaterThanEqualAndStartTimeLessThanAndLastVersionIsTrue
+                (meetingRoom, dayStart, dayEnd);
+    }
+
+    public void updateEventLastVersion(Integer id, Boolean lastVersion) throws ResourceNotFoundException {
+        Event event = eventRepository.findById(id).orElseThrow(() ->
+                new ResourceNotFoundException("Event was not found for id:" + id));
+        event.setLastVersion(lastVersion);
+        eventRepository.save(event);
+    }
+
 }
