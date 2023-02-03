@@ -57,4 +57,13 @@ public class EventService {
         eventRepository.save(event);
     }
 
+    public List<Event> findAllByDay(Date dayStart){
+        Calendar c = Calendar.getInstance();
+        c.setTime(dayStart);
+        c.add(Calendar.DATE, 1);
+        Date dayEnd = c.getTime();
+        return eventRepository.findAllByStartTimeGreaterThanEqualAndStartTimeLessThanAndLastVersionIsTrue
+                (dayStart, dayEnd);
+    }
+
 }

@@ -50,5 +50,10 @@ public class EventController {
         return ResponseEntity.ok(new UpdateResponse("Event with id: " + id + " was updated"));
     }
 
+    @GetMapping("/event/allByDay")
+    public ResponseEntity<List<Event>> getAllEventsByDay
+            (@RequestParam(value = "dayStart") @DateTimeFormat(pattern="yyyy-MM-dd") Date dayStart) {
+        return ResponseEntity.ok(eventService.findAllByDay(dayStart));
+    }
 
 }

@@ -13,4 +13,7 @@ public interface EventRepository extends JpaRepository<Event, Integer> {
     List<Event> findAllByMeetingRoomAndStartTimeGreaterThanEqualAndStartTimeLessThanAndLastVersionIsTrue
             (Integer meetingRoom, Date dayStart, Date dayEnd);
 
+    List<Event> findAllByStartTimeGreaterThanEqualAndStartTimeLessThanAndLastVersionIsTrue
+            (Date dayStart, Date dayEnd);
+
 }
