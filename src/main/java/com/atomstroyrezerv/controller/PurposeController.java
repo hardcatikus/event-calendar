@@ -4,10 +4,7 @@ import com.atomstroyrezerv.exception.ResourceNotFoundException;
 import com.atomstroyrezerv.model.Purpose;
 import com.atomstroyrezerv.service.PurposeService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -30,6 +27,11 @@ public class PurposeController {
     public ResponseEntity<Purpose> getPurposeById
             (@PathVariable(value = "id") Integer id) throws ResourceNotFoundException {
         return ResponseEntity.ok(purposeService.getPurposeById(id));
+    }
+
+    @PostMapping("/purpose/add")
+    public Purpose createPurpose(@RequestBody Purpose purpose){
+        return purposeService.save(purpose);
     }
 
 }

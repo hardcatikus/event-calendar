@@ -25,4 +25,8 @@ public class MeetingRoomService {
                 new ResourceNotFoundException("Meeting room was not found for id:" + id));
         return meetingRoom;
     }
+
+    public MeetingRoom save(MeetingRoom meetingRoom){
+        return meetingRoomRepository.save(meetingRoom);
+    }
 }

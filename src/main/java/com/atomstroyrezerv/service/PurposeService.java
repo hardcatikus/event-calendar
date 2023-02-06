@@ -26,4 +26,8 @@ public class PurposeService {
         return purpose;
     }
 
+    public Purpose save(Purpose purpose){
+        return purposeRepository.save(purpose);
+    }
+
 }

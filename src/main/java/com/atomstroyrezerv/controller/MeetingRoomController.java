@@ -4,10 +4,7 @@ import com.atomstroyrezerv.exception.ResourceNotFoundException;
 import com.atomstroyrezerv.model.MeetingRoom;
 import com.atomstroyrezerv.service.MeetingRoomService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -30,6 +27,11 @@ public class MeetingRoomController {
     public ResponseEntity<MeetingRoom> getMeetingRoomById
             (@PathVariable(value = "id") Integer id) throws ResourceNotFoundException {
         return ResponseEntity.ok(meetingRoomService.getMeetingRoomById(id));
+    }
+
+    @PostMapping("/meeting-room/add")
+    public MeetingRoom createRoom(@RequestBody MeetingRoom meetingRoom){
+        return meetingRoomService.save(meetingRoom);
     }
 
 }
