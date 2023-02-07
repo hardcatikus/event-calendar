@@ -56,4 +56,9 @@ public class EventController {
         return ResponseEntity.ok(eventService.findAllByDay(dayStart));
     }
 
+    @GetMapping("/event/allStates")
+    public ResponseEntity<List<Event>> getAllEventStates(@RequestParam(value = "id") Integer id){
+        return ResponseEntity.ok(eventService.findEventStates(id));
+    }
+
 }

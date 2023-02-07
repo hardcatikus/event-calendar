@@ -66,4 +66,8 @@ public class EventService {
                 (dayStart, dayEnd);
     }
 
+    public List<Event> findEventStates(Integer id){
+        return eventRepository.findAllByIdEqualsOrInitialStateEqualsOrderByCreationTimeDesc(id,id);
+    }
+
 }

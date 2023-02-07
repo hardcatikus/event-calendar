@@ -16,4 +16,8 @@ public interface EventRepository extends JpaRepository<Event, Integer> {
     List<Event> findAllByStartTimeGreaterThanEqualAndStartTimeLessThanAndLastVersionIsTrue
             (Date dayStart, Date dayEnd);
 
+    List<Event> findAllByIdEqualsOrInitialStateEqualsOrderByCreationTimeDesc(Integer id1, Integer id2);
+
+    List<Event> findAllByEndTimeGreaterThanAndLastVersionIsTrueOrderByStartTime (Date currentDate);
+
 }
