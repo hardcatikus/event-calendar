@@ -1,28 +1,26 @@
 package com.atomstroyrezerv.dto;
 
-import java.util.Date;
 import java.util.Objects;
 
 public class EventDTO {
 
-    private Integer id;
     private String name;
-    private Date startDate;
-    private Date endDate;
+    private String startTime;
+    private String endTime;
+    private String purpose;
+    private String meetingRoom;
+    private String applicant;
+    private String participantsList;
 
-    public EventDTO(Integer id, String name, Date startDate, Date endDate) {
-        this.id = id;
+    public EventDTO(String name, String startDate, String endDate, String purpose,
+                    String meetingRoom, String applicant, String participantsList) {
         this.name = name;
-        this.startDate = startDate;
-        this.endDate = endDate;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
+        this.startTime = startDate;
+        this.endTime = endDate;
+        this.purpose = purpose;
+        this.meetingRoom = meetingRoom;
+        this.applicant = applicant;
+        this.participantsList = participantsList;
     }
 
     public String getName() {
@@ -33,20 +31,52 @@ public class EventDTO {
         this.name = name;
     }
 
-    public Date getStartDate() {
-        return startDate;
+    public String getStartTime() {
+        return startTime;
     }
 
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
     }
 
-    public Date getEndDate() {
-        return endDate;
+    public String getEndTime() {
+        return endTime;
     }
 
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
+    }
+
+    public String getPurpose() {
+        return purpose;
+    }
+
+    public void setPurpose(String purpose) {
+        this.purpose = purpose;
+    }
+
+    public String getMeetingRoom() {
+        return meetingRoom;
+    }
+
+    public void setMeetingRoom(String meetingRoom) {
+        this.meetingRoom = meetingRoom;
+    }
+
+    public String getApplicant() {
+        return applicant;
+    }
+
+    public void setApplicant(String applicant) {
+        this.applicant = applicant;
+    }
+
+    public String getParticipantsList() {
+        return participantsList;
+    }
+
+    public void setParticipantsList(String participantsList) {
+        this.participantsList = participantsList;
     }
 
     @Override
@@ -54,12 +84,14 @@ public class EventDTO {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         EventDTO eventDTO = (EventDTO) o;
-        return Objects.equals(name, eventDTO.name) && Objects.equals(id, eventDTO.id)
-                && Objects.equals(startDate, eventDTO.startDate) && Objects.equals(endDate, eventDTO.endDate);
+        return Objects.equals(name, eventDTO.name) && Objects.equals(startTime, eventDTO.startTime)
+                && Objects.equals(endTime, eventDTO.endTime) && Objects.equals(purpose, eventDTO.purpose)
+                && Objects.equals(meetingRoom, eventDTO.meetingRoom) && Objects.equals(applicant, eventDTO.applicant)
+                && Objects.equals(participantsList, eventDTO.participantsList);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, id, startDate, endDate);
+        return Objects.hash(name, startTime, endTime, purpose, meetingRoom, applicant, participantsList);
     }
 }

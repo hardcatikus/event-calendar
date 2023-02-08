@@ -1,5 +1,6 @@
 package com.atomstroyrezerv.controller;
 
+import com.atomstroyrezerv.dto.EventDTO;
 import com.atomstroyrezerv.exception.ResourceNotFoundException;
 import com.atomstroyrezerv.model.Event;
 import com.atomstroyrezerv.response.UpdateResponse;
@@ -59,6 +60,12 @@ public class EventController {
     @GetMapping("/event/allStates")
     public ResponseEntity<List<Event>> getAllEventStates(@RequestParam(value = "id") Integer id){
         return ResponseEntity.ok(eventService.findEventStates(id));
+    }
+
+    @GetMapping("/event/allRelevant")
+    public  ResponseEntity<List<EventDTO>> getAllRelevantEvents(@RequestParam(value = "date")
+                                                @DateTimeFormat(pattern="yyyy-MM-dd") Date date){
+        return ResponseEntity.ok(eventService.getRelevantEvents(date));
     }
 
 }
