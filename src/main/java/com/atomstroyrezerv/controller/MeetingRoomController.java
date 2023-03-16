@@ -2,6 +2,7 @@ package com.atomstroyrezerv.controller;
 
 import com.atomstroyrezerv.exception.ResourceNotFoundException;
 import com.atomstroyrezerv.model.MeetingRoom;
+import com.atomstroyrezerv.response.DeleteResponse;
 import com.atomstroyrezerv.service.MeetingRoomService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -32,6 +33,13 @@ public class MeetingRoomController {
     @PostMapping("/meeting-room/add")
     public MeetingRoom createRoom(@RequestBody MeetingRoom meetingRoom){
         return meetingRoomService.save(meetingRoom);
+    }
+
+    @DeleteMapping("/meeting-room/{id}")
+    public ResponseEntity<DeleteResponse> deleteMeetingRoomById
+            (@PathVariable(value = "id") Integer id) throws ResourceNotFoundException {
+        meetingRoomService.deleteMeetingRoom(id);
+        return ResponseEntity.ok(new DeleteResponse("Meeting Room with id:" + id + " was deleted"));
     }
 
 }

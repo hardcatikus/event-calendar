@@ -101,4 +101,13 @@ public class EventService {
         return result;
     }
 
+    public void deleteObsoleteEvents(Date currentDate) {
+        Calendar c = Calendar.getInstance();
+        c.setTime(currentDate);
+        c.add(Calendar.DATE, -7);
+        Date previousWeek = c.getTime();
+        List<Event> events = eventRepository.findAllByStartTimeLessThan(previousWeek);
+        eventRepository.deleteAll(events);
+    }
+
 }

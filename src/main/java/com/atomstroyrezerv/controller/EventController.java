@@ -3,6 +3,7 @@ package com.atomstroyrezerv.controller;
 import com.atomstroyrezerv.dto.EventDTO;
 import com.atomstroyrezerv.exception.ResourceNotFoundException;
 import com.atomstroyrezerv.model.Event;
+import com.atomstroyrezerv.response.DeleteResponse;
 import com.atomstroyrezerv.response.UpdateResponse;
 import com.atomstroyrezerv.service.EventService;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -20,6 +21,11 @@ public class EventController {
 
     public EventController(EventService eventService) {
         this.eventService = eventService;
+    }
+
+    @GetMapping("/hello")
+    public String sayHello() {
+        return "Hello World!";
     }
 
     @GetMapping("/event/all")
@@ -66,6 +72,13 @@ public class EventController {
     public  ResponseEntity<List<EventDTO>> getAllRelevantEvents(@RequestParam(value = "date")
                                                 @DateTimeFormat(pattern="yyyy-MM-dd") Date date){
         return ResponseEntity.ok(eventService.getRelevantEvents(date));
+    }
+
+    @DeleteMapping("/event/allObsolete")
+    public ResponseEntity<DeleteResponse> deleteAllObsoleteEvents
+            (@RequestParam(value = "currentDate") @DateTimeFormat(pattern="yyyy-MM-dd") Date currentDate){
+        eventService.deleteObsoleteEvents(currentDate);
+        return ResponseEntity.ok(new DeleteResponse("Obsolete events were deleted"));
     }
 
 }

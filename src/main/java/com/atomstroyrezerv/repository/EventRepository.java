@@ -20,4 +20,10 @@ public interface EventRepository extends JpaRepository<Event, Integer> {
 
     List<Event> findAllByEndTimeGreaterThanAndLastVersionIsTrueOrderByStartTime (Date currentDate);
 
+    List<Event> findAllByStartTimeLessThan(Date previousWeek);
+
+    List<Event> findAllByMeetingRoom(Integer meetingRoomId);
+
+    List<Event> findAllByPurpose(Integer purposeId);
+
 }
